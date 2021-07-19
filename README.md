@@ -87,6 +87,15 @@ docker-compose up db
 java -jar target/mancala-game-0.0.1-SNAPSHOT.jar
 ```
 
+Steps to run the application without creating docker image
+
+```shell
+cd warehouse
+mvn clean install -Ddockerfile.skip
+docker-compose up db
+java -jar target/mancala-game-0.0.1-SNAPSHOT.jar
+```
+
 - To Stop the docker-compose
 
 ```shell
