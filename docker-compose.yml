@@ -1,0 +1,27 @@
+version: '2'
+
+services:
+  app:
+    image: 'warehouse-application:0.0.1-SNAPSHOT'
+    container_name: app
+    ports:
+      - 8888:8080
+    depends_on:
+      - db
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/warehousedb
+      - SPRING_DATASOURCE_USERNAME=dbuser
+      - SPRING_DATASOURCE_PASSWORD=dbpassword
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+    volumes:
+      - ./inventory:/inventory
+
+  db:
+    container_name: db
+    build: ./src/main/docker/db
+    environment:
+      - POSTGRES_USER=dbuser
+      - POSTGRES_PASSWORD=dbpassword
+      - POSTGRES_DB=warehousedb
+    ports:
+      - 5432:5432

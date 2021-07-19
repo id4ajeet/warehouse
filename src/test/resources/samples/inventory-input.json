@@ -1,0 +1,44 @@
+{
+  "inventory": [
+    {
+      "art_id": "1",
+      "name": "leg",
+      "stock": "120"
+    },
+    {
+      "art_id": "2",
+      "name": "screw",
+      "stock": "170"
+    },
+    {
+      "art_id": "3",
+      "name": "seat",
+      "stock": "20"
+    },
+    {
+      "art_id": "4",
+      "name": "table top",
+      "stock": "4"
+    },
+    {
+      "art_id": "5",
+      "name": "Fan",
+      "stock": "10"
+    },
+    {
+      "art_id": "6",
+      "name": "Door Nob",
+      "stock": "10"
+    },
+    {
+      "art_id": "7",
+      "name": "Door plank",
+      "stock": "5"
+    },
+    {
+      "art_id": "8",
+      "name": "Door lock",
+      "stock": "4"
+    }
+  ]
+}

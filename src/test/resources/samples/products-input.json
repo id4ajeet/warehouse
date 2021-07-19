@@ -1,0 +1,68 @@
+{
+  "products": [
+    {
+      "name": "Dining Chair",
+      "price": "100.50",
+      "contain_articles": [
+        {
+          "art_id": "1",
+          "amount_of": "4"
+        },
+        {
+          "art_id": "2",
+          "amount_of": "8"
+        },
+        {
+          "art_id": "3",
+          "amount_of": "1"
+        },
+        {
+          "art_id": "4",
+          "amount_of": "2"
+        }
+      ]
+    },
+    {
+      "name": "Dinning Table",
+      "price": "200.75",
+      "contain_articles": [
+        {
+          "art_id": "1",
+          "amount_of": "4"
+        },
+        {
+          "art_id": "4",
+          "amount_of": "1"
+        }
+      ]
+    },
+    {
+      "name": "Table Fan",
+      "price": "50.0",
+      "contain_articles": [
+        {
+          "art_id": "5",
+          "amount_of": "1"
+        }
+      ]
+    },
+    {
+      "name": "Door",
+      "price": "250.0",
+      "contain_articles": [
+        {
+          "art_id": "6",
+          "amount_of": "2"
+        },
+        {
+          "art_id": "7",
+          "amount_of": "1"
+        },
+        {
+          "art_id": "8",
+          "amount_of": "1"
+        }
+      ]
+    }
+  ]
+}
