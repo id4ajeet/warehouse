@@ -45,6 +45,14 @@ cd warehouse
 mvn test
 ```
 
+To build the application without creating docker image
+
+```shell
+cd warehouse
+mvn clean install -Ddockerfile.skip
+```
+
+
 ### Run the application
 
 Application needs Postgres database, for this purpose docker-compose.yml is used
