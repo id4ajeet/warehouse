@@ -23,12 +23,12 @@ public class ProductDefinitionController {
 
     @GetMapping(value = "/products/{name}",
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public Product getProduct(@PathVariable String name) {
+    public Product getProduct(@PathVariable final String name) {
         return productDefinitionService.findOne(name);
     }
 
     @DeleteMapping(value = "/products/{name}")
-    public void deleteProduct(@PathVariable String name) {
+    public void deleteProduct(@PathVariable final String name) {
         productDefinitionService.deleteOne(name);
     }
 }

@@ -21,7 +21,7 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 public class AvailableProductServiceImpl implements AvailableProductService {
 
-    private static final long ZERO = 0l;
+    private static final long ZERO = 0L;
     private static final String ZERO_STR = "0";
 
     @NonNull
@@ -50,7 +50,7 @@ public class AvailableProductServiceImpl implements AvailableProductService {
     }
 
     @Override
-    public PurchaseResponse sell(List<PurchaseProduct> items) {
+    public PurchaseResponse sell(final List<PurchaseProduct> items) {
 
         var total = new BigDecimal(ZERO_STR);
         Map<String, Long> articlesNeeded = new HashMap<>();
@@ -73,20 +73,20 @@ public class AvailableProductServiceImpl implements AvailableProductService {
         return response;
     }
 
-    private AvailableProduct getProduct(String name) {
+    private AvailableProduct getProduct(final String name) {
         return productRepository.findByName(name)
                 .map(productEntityAvailableProductConverter::convert)
                 .orElseThrow(() -> new StockNotAvailable(String.format("Product '%s' doesn't exists", name)));
     }
 
-    private BigDecimal getPrice(PurchaseProduct item, AvailableProduct product) {
+    private BigDecimal getPrice(final PurchaseProduct item, final AvailableProduct product) {
         var price = Optional.ofNullable(product.getPrice()).orElse(ZERO_STR);
         var quantity = new BigDecimal(item.getQuantity());
 
         return new BigDecimal(price).multiply(quantity);
     }
 
-    private AvailableProduct updateQuantity(AvailableProduct product) {
+    private AvailableProduct updateQuantity(final AvailableProduct product) {
         product.setQuantity(quantityService.calculate(product.getParts()));
         return product;
     }

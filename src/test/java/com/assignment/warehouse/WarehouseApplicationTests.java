@@ -2,14 +2,12 @@ package com.assignment.warehouse;
 
 import ch.qos.logback.classic.Logger;
 import com.assignment.warehouse.stubs.TestLogAppender;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 
-import java.io.File;
 import java.nio.file.Path;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;

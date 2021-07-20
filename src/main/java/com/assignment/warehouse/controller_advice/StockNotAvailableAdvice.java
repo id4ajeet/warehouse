@@ -13,8 +13,8 @@ public class StockNotAvailableAdvice {
     @ResponseBody
     @ExceptionHandler(StockNotAvailable.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public ErrorMessage articleNotFoundHandler(StockNotAvailable ex) {
-        ErrorMessage error = new ErrorMessage();
+    public ErrorMessage articleNotFoundHandler(final StockNotAvailable ex) {
+        var error = new ErrorMessage();
         error.setMessage(ex.getMessage());
         return error;
     }

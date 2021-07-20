@@ -17,7 +17,7 @@ public class ProductEntityToProductConverter implements Converter<ProductEntity,
     private final Converter<ProductSubArticleEntity, ProductSubArticle> productSubArticleEntityProductSubArticleConverter;
 
     @Override
-    public Product convert(ProductEntity productEntity) {
+    public Product convert(final ProductEntity productEntity) {
 
         var product = new Product();
         product.setName(productEntity.getName());

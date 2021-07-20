@@ -7,7 +7,7 @@ public interface ProductDefinitionService {
 
     Products findAll();
 
-    Product findOne(String name);
+    Product findOne(final String name);
 
-    void deleteOne(String name);
+    void deleteOne(final String name);
 }

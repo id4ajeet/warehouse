@@ -54,7 +54,7 @@ public class FileWatcherConfig {
             directory.mkdirs();
         }
 
-        FileSystemWatcher watcher = new FileSystemWatcher(true, Duration.ofMillis(pollInterval), Duration.ofMillis(quietPeriod));
+        var watcher = new FileSystemWatcher(true, Duration.ofMillis(pollInterval), Duration.ofMillis(quietPeriod));
         watcher.addSourceDirectory(directory);
         watcher.addListener(fileChangeListener);
         watcher.start();

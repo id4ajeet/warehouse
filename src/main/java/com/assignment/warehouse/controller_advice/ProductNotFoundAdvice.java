@@ -13,8 +13,8 @@ public class ProductNotFoundAdvice {
     @ResponseBody
     @ExceptionHandler(ProductNotFound.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    public ErrorMessage articleNotFoundHandler(ProductNotFound ex) {
-        ErrorMessage error = new ErrorMessage();
+    public ErrorMessage articleNotFoundHandler(final ProductNotFound ex) {
+        var error = new ErrorMessage();
         error.setMessage(ex.getMessage());
         return error;
     }

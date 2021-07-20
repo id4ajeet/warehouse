@@ -32,16 +32,16 @@ public class FileSystemChangeListener implements FileChangeListener {
     private final InputDataProcessor productInputProcessor;
 
     @Override
-    public void onChange(Set<ChangedFiles> changeSet) {
+    public void onChange(final Set<ChangedFiles> changeSet) {
         for (var change : changeSet) {
             for (var file : change) {
-                var filePath = file.getFile()
+                final var filePath = file.getFile()
                         .toPath()
                         .toAbsolutePath()
                         .normalize()
                         .toString();
 
-                var action = file.getType();
+                final var action = file.getType();
 
                 if (DELETE.equals(action) || !file.getFile().exists() || file.getFile().isHidden()) {
                     log.warn("Skipping file - {} , Action - {}", filePath, action);
@@ -56,9 +56,9 @@ public class FileSystemChangeListener implements FileChangeListener {
         }
     }
 
-    private void process(String filePath) {
+    private void process(final String filePath) {
 
-        String fileName = Path.of(filePath)
+        final var fileName = Path.of(filePath)
                 .getFileName()
                 .toString()
                 .toLowerCase();
@@ -72,7 +72,7 @@ public class FileSystemChangeListener implements FileChangeListener {
         }
     }
 
-    private boolean isLocked(String filePath) {
+    private boolean isLocked(final String filePath) {
         try (var ch = FileChannel.open(Path.of(filePath), StandardOpenOption.WRITE); var lock = ch.tryLock()) {
             return Objects.isNull(lock);
         } catch (Exception e) {

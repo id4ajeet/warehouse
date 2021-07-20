@@ -1,5 +1,5 @@
 package com.assignment.warehouse.service;
 
 public interface InputDataProcessor {
-    void run(String data);
+    void run(final String data);
 }

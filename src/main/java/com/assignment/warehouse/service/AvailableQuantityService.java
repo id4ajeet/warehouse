@@ -7,7 +7,7 @@ import java.util.Map;
 
 public interface AvailableQuantityService {
 
-    long calculate(List<ProductSubArticle> parts);
+    long calculate(final List<ProductSubArticle> parts);
 
-    void updateStock(Map<String, Long> articlesNeeded);
+    void updateStock(final Map<String, Long> articlesNeeded);
 }

@@ -28,7 +28,7 @@ public class PurchaseController {
     @PostMapping(value = "/products",
             produces = MediaType.APPLICATION_JSON_VALUE,
             consumes = MediaType.APPLICATION_JSON_VALUE)
-    public PurchaseResponse updateProducts(@RequestBody List<PurchaseProduct> request) {
+    public PurchaseResponse updateProducts(@RequestBody final List<PurchaseProduct> request) {
         return availableProductService.sell(request);
     }
 }

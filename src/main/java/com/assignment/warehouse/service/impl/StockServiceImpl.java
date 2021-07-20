@@ -26,7 +26,7 @@ public class StockServiceImpl implements StockService {
 
     @Override
     public Inventory findAll() {
-        var articles = inventoryRepository.findAll()
+        final var articles = inventoryRepository.findAll()
                 .stream()
                 .map(articleEntityArticleConverter::convert)
                 .collect(Collectors.toList());
@@ -41,7 +41,7 @@ public class StockServiceImpl implements StockService {
     }
 
     @Override
-    public Article findOne(String id) {
+    public Article findOne(final String id) {
         return inventoryRepository.findById(id)
                 .map(articleEntityArticleConverter::convert)
                 .orElseThrow(() -> new ArticleNotFound(String.format("Article[%s] not found", id)));
@@ -49,7 +49,7 @@ public class StockServiceImpl implements StockService {
 
     @Override
     @Transactional
-    public void deleteOne(String id) {
+    public void deleteOne(final String id) {
         inventoryRepository.findById(id)
                 .ifPresent(inventoryRepository::delete);
     }

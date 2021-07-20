@@ -10,5 +10,5 @@ public interface AvailableProductService {
 
     List<AvailableProduct> findAll();
 
-    PurchaseResponse sell(List<PurchaseProduct> items);
+    PurchaseResponse sell(final List<PurchaseProduct> items);
 }

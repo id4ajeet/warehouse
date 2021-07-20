@@ -24,12 +24,12 @@ public class StockController {
 
     @GetMapping(value = "/articles/{id}",
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public Article getArticle(@PathVariable String id) {
+    public Article getArticle(@PathVariable final String id) {
         return stockService.findOne(id);
     }
 
     @DeleteMapping(value = "/articles/{id}")
-    public void deleteArticle(@PathVariable String id) {
+    public void deleteArticle(@PathVariable final String id) {
         stockService.deleteOne(id);
     }
 }

@@ -30,9 +30,9 @@ public class ProductFileSystemProcessorImpl implements InputDataProcessor {
     private final ProductRepository productRepository;
 
     @Override
-    public void run(String filePath) {
+    public void run(final String filePath) {
         try {
-            var products = objectMapper.readValue(Path.of(filePath).toFile(), Products.class);
+            final var products = objectMapper.readValue(Path.of(filePath).toFile(), Products.class);
 
             Optional.ofNullable(products)
                     .ifPresentOrElse(this::saveInDB, () -> log.info("No product present to load in db"));
@@ -43,13 +43,13 @@ public class ProductFileSystemProcessorImpl implements InputDataProcessor {
     }
 
     @Transactional
-    public void saveInDB(Products products) {
+    public void saveInDB(final Products products) {
         if (Objects.isNull(products.getItems())) {
             log.info("No product present to process");
             return;
         }
 
-        var dbProducts = products.getItems()
+        final var dbProducts = products.getItems()
                 .stream()
                 .map(this::convertToProductEntity)
                 .collect(Collectors.toList());
@@ -58,13 +58,13 @@ public class ProductFileSystemProcessorImpl implements InputDataProcessor {
         log.info("DB updated with products size={}", dbProducts.size());
     }
 
-    private ProductEntity convertToProductEntity(Product product) {
+    private ProductEntity convertToProductEntity(final Product product) {
         return productRepository.findByName(product.getName())
                 .map(dbEntity -> updateProduct(dbEntity, product))
                 .orElseGet(() -> createProduct(product));
     }
 
-    private ProductEntity createProduct(Product product) {
+    private ProductEntity createProduct(final Product product) {
 
         var dbEntity = new ProductEntity();
         dbEntity.setName(product.getName());
@@ -78,14 +78,14 @@ public class ProductFileSystemProcessorImpl implements InputDataProcessor {
         return dbEntity;
     }
 
-    private ProductEntity updateProduct(ProductEntity dbEntity, Product product) {
+    private ProductEntity updateProduct(final ProductEntity dbEntity, final Product product) {
 
-        var subArticles = dbEntity.getSubArticles();
+        final var subArticles = dbEntity.getSubArticles();
 
-        var dbArticlesIds = subArticles.stream()
+        final var dbArticlesIds = subArticles.stream()
                 .collect(Collectors.toMap(ProductSubArticleEntity::getArticleId, Function.identity()));
 
-        var articlesIds = product.getParts()
+        final var articlesIds = product.getParts()
                 .stream()
                 .map(ProductSubArticle::getArticleId)
                 .collect(Collectors.toSet());
@@ -114,10 +114,10 @@ public class ProductFileSystemProcessorImpl implements InputDataProcessor {
         return dbEntity;
     }
 
-    private ProductSubArticleEntity convertToProductSubArticle(ProductSubArticle p) {
+    private ProductSubArticleEntity convertToProductSubArticle(final ProductSubArticle article) {
         var entity = new ProductSubArticleEntity();
-        entity.setArticleId(p.getArticleId());
-        entity.setArticleQuantity(p.getArticleCount());
+        entity.setArticleId(article.getArticleId());
+        entity.setArticleQuantity(article.getArticleCount());
         return entity;
     }
 }

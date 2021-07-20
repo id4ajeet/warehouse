@@ -14,8 +14,8 @@ public class ArticleNotFoundAdvice {
     @ResponseBody
     @ExceptionHandler(ArticleNotFound.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    public ErrorMessage articleNotFoundHandler(ArticleNotFound ex) {
-        ErrorMessage error = new ErrorMessage();
+    public ErrorMessage articleNotFoundHandler(final ArticleNotFound ex) {
+        var error = new ErrorMessage();
         error.setMessage(ex.getMessage());
         return error;
     }

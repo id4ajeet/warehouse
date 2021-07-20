@@ -26,9 +26,9 @@ public class InventoryFileSystemProcessorImpl implements InputDataProcessor {
     private final InventoryRepository inventoryRepository;
 
     @Override
-    public void run(String filePath) {
+    public void run(final String filePath) {
         try {
-            var inventory = objectMapper.readValue(Path.of(filePath).toFile(), Inventory.class);
+            final var inventory = objectMapper.readValue(Path.of(filePath).toFile(), Inventory.class);
 
             Optional.ofNullable(inventory)
                     .ifPresentOrElse(this::saveInDB, () -> log.info("No article present to load in db"));
@@ -39,13 +39,13 @@ public class InventoryFileSystemProcessorImpl implements InputDataProcessor {
     }
 
     @Transactional
-    public void saveInDB(Inventory inv) {
+    public void saveInDB(final Inventory inv) {
         if (Objects.isNull(inv.getArticles())) {
             log.info("No article present to process");
             return;
         }
 
-        var articles = inv.getArticles()
+        final var articles = inv.getArticles()
                 .stream()
                 .map(this::convertToArticleEntity)
                 .collect(Collectors.toList());
@@ -55,13 +55,13 @@ public class InventoryFileSystemProcessorImpl implements InputDataProcessor {
         log.info("DB updated with articles size={}", articles.size());
     }
 
-    private ArticleEntity convertToArticleEntity(Article article) {
+    private ArticleEntity convertToArticleEntity(final Article article) {
         return inventoryRepository.findById(article.getId())
                 .map(dbEntity -> updateArticle(dbEntity, article))
                 .orElseGet(() -> createArticle(article));
     }
 
-    private ArticleEntity createArticle(Article article) {
+    private ArticleEntity createArticle(final Article article) {
         var dbArticle = new ArticleEntity();
         dbArticle.setId(article.getId());
         dbArticle.setName(article.getName());
@@ -69,7 +69,7 @@ public class InventoryFileSystemProcessorImpl implements InputDataProcessor {
         return dbArticle;
     }
 
-    private ArticleEntity updateArticle(ArticleEntity dbArticle, Article article) {
+    private ArticleEntity updateArticle(final ArticleEntity dbArticle, final Article article) {
         dbArticle.setName(article.getName());
         dbArticle.setStock(article.getStock());
         return dbArticle;

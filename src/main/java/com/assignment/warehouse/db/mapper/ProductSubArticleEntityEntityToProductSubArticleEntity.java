@@ -7,7 +7,7 @@ import org.springframework.core.convert.converter.Converter;
 public class ProductSubArticleEntityEntityToProductSubArticleEntity implements Converter<ProductSubArticleEntity, ProductSubArticle> {
 
     @Override
-    public ProductSubArticle convert(ProductSubArticleEntity entity) {
+    public ProductSubArticle convert(final ProductSubArticleEntity entity) {
         var article = new ProductSubArticle();
         article.setArticleId(entity.getArticleId());
         article.setArticleCount(entity.getArticleQuantity());

@@ -26,7 +26,7 @@ public class ProductDefinitionServiceImpl implements ProductDefinitionService {
 
     @Override
     public Products findAll() {
-        var items = productRepository.findAll()
+        final var items = productRepository.findAll()
                 .stream()
                 .map(productEntityProductConverter::convert)
                 .collect(Collectors.toList());
@@ -41,7 +41,7 @@ public class ProductDefinitionServiceImpl implements ProductDefinitionService {
     }
 
     @Override
-    public Product findOne(String name) {
+    public Product findOne(final String name) {
         return productRepository.findByName(name)
                 .map(productEntityProductConverter::convert)
                 .orElseThrow(() -> new ProductNotFound(String.format("Product[%s] not found", name)));
@@ -49,7 +49,7 @@ public class ProductDefinitionServiceImpl implements ProductDefinitionService {
 
     @Override
     @Transactional
-    public void deleteOne(String name) {
+    public void deleteOne(final String name) {
         productRepository.findByName(name)
                 .ifPresent(productRepository::delete);
     }

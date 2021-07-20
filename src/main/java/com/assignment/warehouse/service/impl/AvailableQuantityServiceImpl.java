@@ -17,13 +17,13 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 public class AvailableQuantityServiceImpl implements AvailableQuantityService {
 
-    private static final long ZERO = 0l;
+    private static final long ZERO = 0L;
 
     @NonNull
     private final InventoryRepository inventoryRepository;
 
     @Override
-    public long calculate(List<ProductSubArticle> parts) {
+    public long calculate(final List<ProductSubArticle> parts) {
         return parts.stream()
                 .filter(article -> Long.parseLong(article.getArticleCount()) > ZERO)
                 .mapToLong(this::calculate)
@@ -33,7 +33,7 @@ public class AvailableQuantityServiceImpl implements AvailableQuantityService {
 
     @Override
     @Transactional
-    public void updateStock(Map<String, Long> articlesNeeded) {
+    public void updateStock(final Map<String, Long> articlesNeeded) {
 
         //fetch required Articles
         var entities = articlesNeeded.keySet()
@@ -59,7 +59,7 @@ public class AvailableQuantityServiceImpl implements AvailableQuantityService {
         inventoryRepository.saveAll(entities);
     }
 
-    private long calculate(ProductSubArticle article) {
+    private long calculate(final ProductSubArticle article) {
         return inventoryRepository.findById(article.getArticleId())
                 .map(entity -> Long.parseLong(entity.getStock()) / Long.parseLong(article.getArticleCount()))
                 .orElse(ZERO);

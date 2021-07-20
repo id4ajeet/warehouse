@@ -7,7 +7,7 @@ import org.springframework.core.convert.converter.Converter;
 public class ArticleEntityToArticleConverter implements Converter<ArticleEntity, Article> {
 
     @Override
-    public Article convert(ArticleEntity articleEntity) {
+    public Article convert(final ArticleEntity articleEntity) {
         var article = new Article();
         article.setId(articleEntity.getId());
         article.setName(articleEntity.getName());

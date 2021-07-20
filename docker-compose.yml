@@ -5,9 +5,9 @@ services:
     image: 'warehouse-application:0.0.1-SNAPSHOT'
     container_name: app
     build:
-       context: .
-       args:                                                                     
-         - JAR_FILE=target/warehouse-0.0.1-SNAPSHOT.jar
+      context: .
+      args:
+        - JAR_FILE=target/warehouse-0.0.1-SNAPSHOT.jar
     ports:
       - 8888:8080
     depends_on:
