@@ -3,6 +3,7 @@ package com.assignment.warehouse.stubs;
 import com.assignment.warehouse.db.entity.ArticleEntity;
 import com.assignment.warehouse.db.entity.ProductEntity;
 import com.assignment.warehouse.db.entity.ProductSubArticleEntity;
+import com.assignment.warehouse.model.AvailableProduct;
 import com.assignment.warehouse.model.ProductSubArticle;
 import com.assignment.warehouse.model.PurchaseProduct;
 
@@ -59,5 +60,20 @@ public class TestingData {
         part.setArticleId(articleId);
         part.setArticleCount(articleCount);
         return part;
+    }
+
+    public static AvailableProduct stubAvailableProduct(String name, String price, long quantity, String articleId1, String article1Count, String articleId2, String article2Count) {
+        var product = new AvailableProduct();
+        product.setPrice(price);
+        product.setQuantity(quantity);
+        product.setName(name);
+
+        List<ProductSubArticle> parts = new ArrayList<>();
+        parts.add(stubSubArticle(articleId1, article1Count));
+        parts.add(stubSubArticle(articleId2, article2Count));
+
+        product.setParts(parts);
+
+        return product;
     }
 }

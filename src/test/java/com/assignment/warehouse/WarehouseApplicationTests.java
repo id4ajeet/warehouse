@@ -2,6 +2,7 @@ package com.assignment.warehouse;
 
 import ch.qos.logback.classic.Logger;
 import com.assignment.warehouse.stubs.TestLogAppender;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.slf4j.LoggerFactory;
@@ -12,6 +13,7 @@ import java.nio.file.Path;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+@Slf4j
 @SpringBootTest
 @ActiveProfiles("test")
 class WarehouseApplicationTests {
@@ -23,7 +25,8 @@ class WarehouseApplicationTests {
     void setUp() {
         var inventory = Path.of("target/inventory").toFile();
         if (inventory.exists()) {
-            inventory.delete();
+            boolean isDeleted = inventory.delete();
+            log.info("{} is deleted : {}", inventory, isDeleted);
         }
 
         logAppender.clear();

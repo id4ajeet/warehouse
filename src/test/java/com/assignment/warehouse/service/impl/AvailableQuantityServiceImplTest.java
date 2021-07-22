@@ -89,8 +89,8 @@ class AvailableQuantityServiceImplTest {
     void updateStockSuccess() {
         //GIVEN
         Map<String, Long> articlesNeeded = new HashMap<>();
-        articlesNeeded.put("1", 20l);
-        articlesNeeded.put("2", 8l);
+        articlesNeeded.put("1", 20L);
+        articlesNeeded.put("2", 8L);
 
         Optional<ArticleEntity> screw = stubOptArticleEntity("1", "Screw", "30");
         Optional<ArticleEntity> leg = stubOptArticleEntity("2", "leg", "10");
@@ -111,11 +111,10 @@ class AvailableQuantityServiceImplTest {
     void updateStockFailWhenArticleNotFound() {
         //GIVEN - Article 2 not in DB
         Map<String, Long> articlesNeeded = new HashMap<>();
-        articlesNeeded.put("1", 20l);
-        articlesNeeded.put("2", 8l);
+        articlesNeeded.put("1", 20L);
+        articlesNeeded.put("2", 8L);
 
         Optional<ArticleEntity> screw = stubOptArticleEntity("1", "Screw", "30");
-        Optional<ArticleEntity> leg = stubOptArticleEntity("2", "leg", "10");
 
         when(inventoryRepository.findById("1")).thenReturn(screw);
 
@@ -131,8 +130,8 @@ class AvailableQuantityServiceImplTest {
     void updateStockFailWhenStockIsLessThenRequested() {
         //GIVEN
         Map<String, Long> articlesNeeded = new HashMap<>();
-        articlesNeeded.put("1", 20l);
-        articlesNeeded.put("2", 8l);
+        articlesNeeded.put("1", 20L);
+        articlesNeeded.put("2", 8L);
 
         Optional<ArticleEntity> screw = stubOptArticleEntity("1", "Screw", "10");
         Optional<ArticleEntity> leg = stubOptArticleEntity("2", "leg", "10");

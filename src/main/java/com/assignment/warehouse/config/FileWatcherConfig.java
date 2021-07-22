@@ -50,8 +50,8 @@ public class FileWatcherConfig {
 
         File directory = new File(inventoryDirectory);
         if (!directory.exists()) {
-            log.info("{} directory doesn't exists, creating...", inventoryDirectory);
-            directory.mkdirs();
+            boolean isCreated = directory.mkdirs();
+            log.info("{} directory doesn't exists, Created - {}", inventoryDirectory, isCreated);
         }
 
         var watcher = new FileSystemWatcher(true, Duration.ofMillis(pollInterval), Duration.ofMillis(quietPeriod));

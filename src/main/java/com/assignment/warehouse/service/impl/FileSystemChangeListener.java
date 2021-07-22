@@ -11,6 +11,7 @@ import java.nio.channels.FileChannel;
 import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 
 import static org.springframework.boot.devtools.filewatch.ChangedFile.Type.DELETE;
@@ -58,10 +59,10 @@ public class FileSystemChangeListener implements FileChangeListener {
 
     private void process(final String filePath) {
 
-        final var fileName = Path.of(filePath)
-                .getFileName()
-                .toString()
-                .toLowerCase();
+        final var fileName = Optional.ofNullable(Path.of(filePath)
+                .getFileName())
+                .map(f -> f.toString().toLowerCase())
+                .orElse("");
 
         if (fileName.startsWith(inventoryFilePrefix.toLowerCase())) {
             inventoryInputProcessor.run(filePath);
